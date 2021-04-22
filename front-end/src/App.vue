@@ -4,7 +4,7 @@
   <router-view />
 
   <h6 class = "header6 bg-light">All content copyright © Sports Dada<br><br>
-  <a class="activities" href="https://github.com/chardensoft/creativeproject4" target="_blank">Github Link</a></h6>
+  <p><a class="activities" href="https://github.com/chardensoft/creativeproject5" target="_blank">Github Link</a>- I spent 3.5 hours (not including creative projects 3 and 4 which I used)</p></h6>
 
   </div>
 </template>
