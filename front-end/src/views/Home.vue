@@ -1,41 +1,87 @@
 <template>
-  <div>
-  <h2>{{this.error}}</h2>
-  <div class="wrapper">
-    <div class="teams">
-    <div class="team" v-for="item in items" :key="item.id">
-      <div class="info">
-        <h1>{{item.title}}</h1>
+<div>
+  <Header/>
+  <div class="allstuff">
+    <h2>{{this.error}}</h2>
+    <h2 class="urteam">Your Teams</h2>
+    <div class="wrapper" v-if="user">
+      <div class="teams">
+      <div class="team" v-for="item in userItems" :key="item.id">
+        <div class="info">
+          <h1>{{item.title}}</h1>
+        </div>
+        <div class="rating">
+          <h5>Offensive Rating: {{item.offrating}}</h5>
+          <h5>Defensive Rating: {{item.defrating}}</h5>
+        </div>
+        <button v-on:click="addTo(item)" class="auto">Add to Final Four</button>
       </div>
-      <div class="rating">
-        <h5>Offensive Rating: {{item.offrating}}</h5>
-        <h5>Defensive Rating: {{item.defrating}}</h5>
-      </div>
-      <button v-on:click="addTo(item)" class="auto">Add to Final Four</button>
     </div>
-  </div>
+    </div>
+    <h2 class="theteam">All Teams</h2>
+    <div class="wrapper">
+      <div class="teams">
+      <div class="team" v-for="item in items" :key="item.id">
+        <div class="info">
+          <h1>{{item.title}}</h1>
+        </div>
+        <div class="rating">
+          <h5>Offensive Rating: {{item.offrating}}</h5>
+          <h5>Defensive Rating: {{item.defrating}}</h5>
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
 import axios from 'axios';
 export default {
   name: 'Home',
+  components: {
+    Header,
+  },
   data() {
     return {
      items: [],
+     userItems: [],
      error: '',
     }
   },
-  created() {
+  async created() {
+    try {
+      let response = await axios.get('/api/users');
+      this.$root.$data.user = response.data.user;
+    } catch (error) {
+      this.$root.$data.user = null;
+    }
    this.getItems();
+   this.getUserItems();
+  },
+  computed: {
+    user() {
+      return this.$root.$data.user;
+    }
   },
   methods: {
     async getItems() {
       try {
-        let response = await axios.get("/api/items");
+        let response = await axios.get("/api/items/all");
         this.items = response.data;
+        console.log(this.items);
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getUserItems() {
+      try {
+        console.log(this.$root.$data.user);
+        let response = await axios.get("/api/items");
+        this.userItems = response.data;
         return true;
       } catch (error) {
         console.log(error);
@@ -68,10 +114,21 @@ export default {
 </script>
 
 <style>
+.allstuff {
+  text-align: center;
+}
 h2 {
   color: red;
   margin-top: 10px;
   margin-bottom: -30px;
+}
+
+.urteam {
+  padding-top: 30px;
+}
+
+.theteam {
+  padding-top: 30px;
 }
 
 .wrapper {

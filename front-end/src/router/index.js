@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Bracket from "../views/Bracket.vue";
 import Create from "../views/Create.vue";
+import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,11 @@ const routes = [
     path: "/Create",
     name: "Create",
     component: Create,
+  },
+  {
+    path: "/Login",
+    name: "Login",
+    component: Login,
   },
 ];
 

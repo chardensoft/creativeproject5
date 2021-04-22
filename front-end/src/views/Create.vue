@@ -1,5 +1,8 @@
 <template>
+<div class="creates">
+  <Header/>
   <div class="all">
+
     <h2 class="title">Create your teams!</h2>
    <div class="heading">
      <h2>Add a Team</h2>
@@ -35,12 +38,17 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
 import axios from 'axios';
 export default {
   name: 'Create',
+  components: {
+    Header,
+  },
   data() {
     return {
       title: "",

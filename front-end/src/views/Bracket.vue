@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <Header/>
     <h2 class="bracketstuff">{{this.$root.$data.bracketInfo}}</h2>
     <h2 class="error">{{this.error}}</h2>
     <div class="wrapper">
@@ -23,8 +24,12 @@
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
 export default {
   name: 'Bracket',
+  components: {
+    Header,
+  },
   data() {
     return {
       // is4: false,
