@@ -1,24 +1,7 @@
-# cp3
+# March Madness Bracket Creator
 
-## Project setup
-```
-npm install
-```
+## Website Walkthrough:
+Teams can be added to the website by any user, allowing others to use them for their own bracket simulations. Users can login and save teams created by them, as well as save bracket simulations. Currently, the website only supports Final Four simulations.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+###Disclosure
+This website was created a school project, hence has some documentation like the time spent and other pieces. This may or may not be updated in the future.
